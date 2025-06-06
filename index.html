@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon!</title>
+    <!-- Google Fonts - Red Hat Display for the new font -->
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <style>
+        /* Define CSS custom properties for colors */
+        :root {
+            --primary-pink: #F024F6;
+            --dark-purple: #220041;
+        }
+
+        html {
+            overflow: hidden;
+        }
+
+        /* Basic reset and font application */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Red Hat Display', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Hide overflow caused by the large tilted background */
+            background: linear-gradient(to bottom right, var(--primary-pink), var(--dark-purple)); /* Main body gradient */
+            position: relative; /* Needed for positioning the absolute gradient layer */
+            color: #fff; /* Default text color for the body */
+            text-align: center;
+        }
+
+        /* Gradient layer: a large, tilted box with a subtle gradient */
+        .gradient-layer {
+            position: absolute;
+            background: conic-gradient(var(--primary-pink), var(--dark-purple)); /* Inner gradient */
+            transform: rotate(158deg); /* Rotate 90deg and scale 150% */
+            opacity: 0.3; /* Subtle opacity */
+            transition: transform 0.3s ease-in-out; /* Smooth transition on hover if applied elsewhere */
+            border-radius: 16px;
+        }
+
+        .layer-1 {
+            width: 2000px;
+            height: 2000px;
+            top: -1000px;
+            left: -1800px;
+            z-index: 1;
+            animation: morph 9s infinite ease-in-out;
+        }
+
+        .layer-2 {
+            width: 2000px;
+            height: 2000px;
+            bottom: -1000px;
+            right: -1800px;
+            z-index: 3;
+            animation: morph 5s infinite ease-in-out;
+        }
+
+        .layer-3 {
+            width: 2000px;
+            height: 2000px;
+            left: 50%;
+            z-index: 0;
+            transform: rotate(158deg);  
+            animation: morph 7s infinite ease-in-out;
+        }
+
+        /* Content (Coming Soon! febri.id) */
+        .content-container {
+            position: relative; /* Ensure it stays on top of the gradient layer */
+            padding: 1rem; /* Equivalent to p-4 */
+            display: flex;
+            width: 100vw;            /* Full viewport width */
+            height: 100vh;  
+            z-index: 99;  
+
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.5s ease-in-out;
+            animation: morph-text 15s infinite ease-in-out;
+        }
+
+        .main-heading {
+            font-size: 5rem; /* Equivalent to text-5xl */
+            line-height: 1; /* Tight line height */
+            font-weight: 800; /* Equivalent to font-extrabold */
+            margin-bottom: 0; /* Equivalent to mb-4 */
+            letter-spacing: -0.05em; /* Equivalent to tracking-tight */
+            letter-spacing: 8px;
+            font-weight: 450px;
+        }
+
+        .sub-text {
+            font-size: 16px; /* Equivalent to text-3xl */
+            font-weight: 600; /* Equivalent to font-semibold */
+            margin-bottom: 0; /* Equivalent to mb-0 */
+            letter-spacing: 2px;
+        }
+
+        .sub-text .sub-text {
+            font-style: italic;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) { /* md breakpoint */
+            .content-container {
+                transform: scale(2);
+            }
+        }
+
+        /* animation */
+        @keyframes morph {
+            0%, 100% {
+                border-radius: 30%;
+                transform: rotate(158deg) scale(1);
+            }
+            50% {
+                border-radius: 50%;
+                transform: rotate(200deg) scale(0.99);
+            }
+        }
+
+        /* animation */
+        @keyframes morph-text {
+            0%, 100% {
+                text-shadow: 0px 3px 25px yellow;
+            }
+            30% {
+                text-shadow: 0px 5px 30px #bd291e;
+            }
+
+            30% {
+                text-shadow: 0px 5px 15px #009AE9;
+            }
+            
+            60% {
+                text-shadow: 0px 5px 30px #bd291e;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- New gradient layer: a large, tilted box with a subtle gradient -->
+    <div class="gradient-layer layer-1"></div>
+    <div class="gradient-layer layer-2"></div>
+    <div class="gradient-layer layer-3"></div>
+
+    <!-- Content (Coming Soon! febri.id) -->
+    <div class="content-container">
+        <!-- Main heading -->
+        <h1 class="main-heading">
+            febri.id
+        </h1>
+        <!-- Febri.id text -->
+        <p class="sub-text">
+            <span>Nothing here yet!</span> 🤣
+        </p>
+    </div>
+</body>
+</html>
