@@ -54,34 +54,35 @@
                 position: absolute;
                 height: 100vh;
                 width: 100vw;
+                animation: reveal 1s ease;
             }
 
             .gradient-layer {
                 position: absolute;
                 background: linear-gradient(var(--primary-pink), var(--dark-purple));
                 opacity: 0.3;
-                width: 2000px;
-                height: 2000px;
+                width: 1000px;
+                height: 1000px;
                 border-radius: 16px;
             }
 
             .layer-1 {
-                top: -1000px;
-                left: -1800px;
+                top: -500px;
+                left: -500px;
                 z-index: 0;
                 animation: morph 24s infinite ease-in-out;
             }
 
             .layer-2 {
-                bottom: -1000px;
-                right: -1800px;
+                bottom: -500px;
+                right: -500px;
                 z-index: 3;
                 animation: morph 20s infinite ease-in-out;
             }
 
             .layer-3 {
-                bottom: -1500px;
-                left: 50%;
+                bottom: -750px;
+                left: calc(50% - 250px);
                 z-index: 1;
                 animation: morph 28s infinite ease-in-out;
             }
@@ -121,14 +122,24 @@
                 font-style: italic;
             }
 
+
+            @keyframes reveal {
+                0%, 50% {
+                    display: none;
+                }
+                100% {
+                    display: block;
+                }
+            }
+
             @keyframes morph {
                 0%, 100% {
-                    border-radius: 30%;
-                    transform: rotate(0deg) scale(1.2);
+                    border-radius: 40%;
+                    transform: rotate(0deg) scale(1.5);
                 }
                 50% {
-                    border-radius: 50%;
-                    transform: rotate(200deg) scale(0.99);
+                    border-radius: 45%;
+                    transform: rotate(380deg) scale(1);
                 }
             }
 
@@ -137,7 +148,7 @@
                     text-shadow: 0px 3px 25px turquoise;
                 }
                 50% {
-                    text-shadow: 0px 5px 15px white;
+                    text-shadow: 0px 5px 15px skyblue;
                 }
             }
 
@@ -200,6 +211,9 @@
                 flex-direction: column;
                 transition: all 0.5s ease-in-out;
                 background: #fff;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .card-content img {
@@ -233,7 +247,7 @@
             @media (min-width: 1024px) {
                 .card.removeable:hover {
                     z-index: 999;
-                    transform: scale(1.1) translateY(-15px);
+                    transform: scale(1.1) translateY(-13px);
                 }
             }
 
@@ -318,6 +332,7 @@
         <div class="bg-container"></div>
 
         <div class="content-container">
+            <div>&nbsp;</div>
             <h1 class="main-heading">febri.id</h1>
             <p class="sub-text">
                 <span>Just a humble programmer</span> 🤣
@@ -405,7 +420,7 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/alva.png">
+                            <img style="border: 1px solid #6CB0B2; width: calc(100% - 2px);" src="./images/alva.png">
                             <div class="card-detail">
                                 <span>Alva Billiard</span>
                                 <span>Sport</span>
@@ -428,7 +443,7 @@
                 <div class="cards">
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/icodea.png">
+                            <img style="border: 1px solid #00A351; width: calc(100% - 2px);" src="./images/icodea.png">
                             <div class="card-detail">
                                 <span>iCodea</span>
                                 <span>Tech</span>
@@ -448,7 +463,7 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/kit.png">
+                            <img style="border: 1px solid #05AFF9; width: calc(100% - 2px);" src="./images/kit.png">
                             <div class="card-detail">
                                 <span>Kawan IT</span>
                                 <span>Outsourcing</span>
@@ -458,7 +473,7 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/az.png">
+                            <img style="border: 1px solid #6935FC; width: calc(100% - 2px);" src="./images/az.png">
                             <div class="card-detail">
                                 <span>AZ Finance</span>
                                 <span>Finance</span>
@@ -468,7 +483,7 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/amn.png">
+                            <img style="border: 1px solid #EAB606; width: calc(100% - 2px);" src="./images/amn.png">
                             <div class="card-detail">
                                 <span>AM Nusaindo</span>
                                 <span>Property</span>
@@ -485,11 +500,76 @@
             <h2>PROPERTY PORTFOLIO</h2>
             <div>
                 <div class="cards">
-                    <div class="card"><div class="card-content">Depok</div></div>
-                    <div class="card"><div class="card-content">Tangerang Regency</div></div>
-                    <div class="card"><div class="card-content">Bogor Regency</div></div>
-                    <div class="card"><div class="card-content">Bekasi Regency</div></div>
-                    <div class="card"><div class="card-content">South Tangerang</div></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kateng.png">
+                            <div class="card-detail">
+                                <span>House</span>
+                                <span>72 sqm · ±42 sqm</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/depok.png">
+                            <div class="card-detail">
+                                <span>2 story house</span>
+                                <span>58 sqm · 45 sqm</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kabek.png">
+                            <div class="card-detail">
+                                <span>Shophouse</span>
+                                <span>±100 sqm · 36 sqm</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/depok.png">
+                            <div class="card-detail">
+                                <span>3 Story House</span>
+                                <span>109 sqm  · 145 sqm</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kabek.png">
+                            <div class="card-detail">
+                                <span>Kiosk</span>
+                                <span>36 sqm · 36 sqm</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kabog.png">
+                            <div class="card-detail">
+                                <span>±400 sqm land</span>
+                                <span>Foodcourt area (TBD)</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/depok.png">
+                            <div class="card-detail">
+                                <span>2 story house</span>
+                                <span>103 sqm · 72 sqm</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
