@@ -37,6 +37,7 @@
                 font-family: 'Red Hat Display', sans-serif;
                 background: linear-gradient(var(--primary-pink), var(--dark-purple));
                 overflow-x: hidden;
+                color: #404040;
             }
 
             .bg-container {
@@ -160,7 +161,7 @@
                 margin-bottom: 16px;
                 justify-content: center;
                 align-items: center;
-                z-index: 12;
+                z-index: 25;
             }
 
             .cards > .card.visible {
@@ -187,16 +188,25 @@
                 padding: 16px;
                 width: calc(200px - 32px);
                 aspect-ratio: 0.63;
-                background: rgba(255,255,255, 1);
+                background: #fff;
                 position: relative;
                 z-index: 199;
                 border-radius: 8px;
                 box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
                 display: flex;
                 justify-content: center;
-                align-items: center;
-                text-align: center;
+                align-items: start;
+                text-align: center !important;
+                flex-direction: column;
                 transition: all 0.5s ease-in-out;
+                background: #fff;
+            }
+
+            .card-content img {
+                object-fit: contain;
+                width: 100%;
+                aspect-ratio: 1;
+                border-radius: 8px;
             }
 
             h2, h3, p {
@@ -205,7 +215,7 @@
                 text-align: center;
                 padding-bottom: 16px;
                 padding-top: 32px;
-                z-index: 99;
+                z-index: 20;
             }
 
             h2 {
@@ -220,15 +230,10 @@
                 padding-bottom: 64px;
             }
 
-
             @media (min-width: 1024px) {
                 .card.removeable:hover {
                     z-index: 999;
                     transform: scale(1.1) translateY(-15px);
-                }
-
-                .card.removeable:hover .card-content {
-                    background: rgba(255,255,255, 1);
                 }
             }
 
@@ -278,6 +283,28 @@
                 }
             }
 
+            .card-detail {
+                display:flex;
+                flex-direction:column;
+                justify-content: center;
+                flex-grow: 1;
+                align-items: start;
+            }
+
+            .card-detail > span:nth-child(1) {
+                font-weight: bold;
+            }
+
+            .card-detail > span:nth-child(2) {
+                padding-top: 4px;
+                font-size: 12px;
+            }
+
+            .card-detail > span:nth-child(3) {
+                padding-top: 4px;
+                font-size: 12px;
+                font-style: italic;
+            }
         </style>
     </head>
     <body>
@@ -303,26 +330,152 @@
             <div>
                 <h3>Passive Owner Investment</h3>
                 <div class="cards">
-                    <div class="card"><div class="card-content">D&P</div></div>
-                    <div class="card"><div class="card-content">Kuda Api</div></div>
-                    <div class="card"><div class="card-content">Fasal Fragrances</div></div>
-                    <div class="card"><div class="card-content">Bianco</div></div>
-                    <div class="card"><div class="card-content">Hana Terrazzo</div></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/dnp.jpeg">
+                            <div class="card-detail">
+                                <span>Devin and Partners</span>
+                                <span>Digital Agencies</span>
+                                <span>c.a 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="background: black;" src="./images/kuda.png">
+                            <div class="card-detail">
+                                <span>Kuda Api</span>
+                                <span>F & B</span>
+                                <span>c.a 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/fasal.png">
+                            <div class="card-detail">
+                                <span>Fasal Fragrances</span>
+                                <span>Cosmetic</span>
+                                <span>c.a 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/bianco.png">
+                            <div class="card-detail">
+                                <span>Bianco Living</span>
+                                <span>Home Decor</span>
+                                <span>c.a 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="background:#9E9B9B" src="./images/hana.png">
+                            <div class="card-detail">
+                                <span>Hana Terrazzo</span>
+                                <span>Sanitary</span>
+                                <span>c.a 2024</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <h3>Beneficial Owner Investment</h3>
                 <div class="cards">
-                    <div class="card"><div class="card-content">62 Teknologi</div></div>
-                    <div class="card"><div class="card-content">Diurnal Project</div></div>
-                    <div class="card"><div class="card-content">Alva Billiard</div></div>
-                    <div class="card"><div class="card-content">Aztro Creative</div></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/62.png">
+                            <div class="card-detail">
+                                <span>62 Teknologi</span>
+                                <span>Tech</span>
+                                <span>c.a 2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="background:#cbcbcb" src="./images/diurnal.png">
+                            <div class="card-detail">
+                                <span>Diurnal Project</span>
+                                <span>Architecture</span>
+                                <span>c.a 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/alva.png">
+                            <div class="card-detail">
+                                <span>Alva Billiard</span>
+                                <span>Sport</span>
+                                <span>c.a 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img style="background:turquoise;" src="./images/aztro.png">
+                            <div class="card-detail">
+                                <span>Aztro Creative</span>
+                                <span>Event Organizer</span>
+                                <span>c.a 2024</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <h3>Legacy Investment</h3>
                 <div class="cards">
-                    <div class="card"><div class="card-content">iCodea</div></div>
-                    <div class="card"><div class="card-content">Nomad</div></div>
-                    <div class="card"><div class="card-content">Kawan IT</div></div>
-                    <div class="card"><div class="card-content">AZ Finance</div></div>
-                    <div class="card"><div class="card-content">AM Nusaindo</div></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/icodea.png">
+                            <div class="card-detail">
+                                <span>iCodea</span>
+                                <span>Tech</span>
+                                <span>2012 - 2014</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/nomad.png">
+                            <div class="card-detail">
+                                <span>NoMad</span>
+                                <span>Entertainment</span>
+                                <span>2015 - 2016</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/kit.png">
+                            <div class="card-detail">
+                                <span>Kawan IT</span>
+                                <span>Outsourcing</span>
+                                <span>2021 - 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/az.png">
+                            <div class="card-detail">
+                                <span>AZ Finance</span>
+                                <span>Finance</span>
+                                <span>2022 - 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <img src="./images/amn.png">
+                            <div class="card-detail">
+                                <span>AM Nusaindo</span>
+                                <span>Property</span>
+                                <span>2023 - 2024</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
