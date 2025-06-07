@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "febri.id",
+    "short_name": "febri.id",
     "icons": [
         {
             "src": "./favicon/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#F024F6",
-    "background_color": "#F024F6",
+    "theme_color": "#220041",
+    "background_color": "#220041",
     "display": "standalone"
 }
