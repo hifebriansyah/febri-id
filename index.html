@@ -64,27 +64,32 @@
                 width: 1000px;
                 height: 1000px;
                 border-radius: 16px;
+                border-radius: 40%;
             }
 
             .layer-1 {
                 top: -500px;
                 left: -500px;
                 z-index: 0;
-                animation: morph 24s infinite ease-in-out;
+                animation: morph-gradient 24s infinite ease-in-out;
             }
 
             .layer-2 {
                 bottom: -500px;
                 right: -500px;
                 z-index: 3;
-                animation: morph 20s infinite ease-in-out;
+                animation: morph-gradient 20s infinite ease-in-out;
             }
 
             .layer-3 {
                 bottom: -750px;
                 left: calc(50% - 250px);
                 z-index: 1;
-                animation: morph 28s infinite ease-in-out;
+                animation: morph-gradient 28s infinite ease-in-out;
+            }
+
+            .paused {
+                animation-play-state: paused;
             }
 
             .content-container {
@@ -93,12 +98,10 @@
                 align-items: center;
                 color: rgba(255, 255, 255, 1);
                 transition: all 0.5s ease-in-out;
-                animation: morph-text 15s infinite ease-in-out;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                width: 100vw;
                 height: 100vh;
                 z-index: 10;
             }
@@ -109,6 +112,7 @@
                 font-weight: 800;
                 letter-spacing: 8px;
                 margin-bottom: 0;
+                animation: morph-text 12s infinite linear;
             }
 
             .sub-text {
@@ -116,6 +120,7 @@
                 font-weight: 600;
                 margin-bottom: 60px;
                 letter-spacing: 2px;
+                animation: morph-text 10s infinite linear;
             }
 
             .sub-text .sub-text {
@@ -132,38 +137,52 @@
                 }
             }
 
-            @keyframes morph {
+            @keyframes morph-gradient {
                 0%, 100% {
-                    border-radius: 40%;
                     transform: rotate(0deg) scale(1.5) skewX(10deg);
                 }
                 50% {
+                    /*border-radius: 50%;*/
                     transform: rotate(360deg) scale(1.2) skewX(-10deg);
                 }
             }
 
             @keyframes morph-text {
                 0%, 100% {
-                    text-shadow: 0px 3px 25px turquoise;
+                    text-shadow: 2px 0px 16px turquoise;
+                }
+                12.5% {
+                    text-shadow: 2px 2px 32px skyblue;
+                }
+                25% {
+                    text-shadow: 0px 2px 16px turquoise;
+                }
+                37.5% {
+                    text-shadow: -2px 2px 32px skyblue;
                 }
                 50% {
-                    text-shadow: 0px 5px 15px skyblue;
+                    text-shadow: -2px 0px 16px turquoise;
+                }
+                62.5% {
+                    text-shadow: -2px -2px 32px skyblue;
+                }
+                75% {
+                    text-shadow: 0px -2px 16px turquoise;
+                }
+                87.5% {
+                    text-shadow: 2px -2px 32px skyblue;
                 }
             }
 
             @keyframes morph-card {
                 0% {
                     opacity: 1;
-                    transform: scale(2) translateX(100px) translateY(-1000px) rotate(-100deg);
-                }
-                100% {
-                    opacity: 1;
-                    transform: scale(1);
+                    transform: scale(2) translateX(-100px) translateY(-1000px) rotate(-50deg);
                 }
             }
 
-            .cards > .card:first-child {
-                padding-left: 0px;
+            .cards > .card:last-child {
+                padding-right: 16px;
             }
 
             .cards {
@@ -219,11 +238,19 @@
                 text-overflow: ellipsis;
             }
 
-            .card-content img {
-                object-fit: contain;
-                width: 100%;
+            .card-content .card-image {
+                width: calc(190px - 32px);
+                height: calc(190px - 32px);
                 aspect-ratio: 1;
                 border-radius: 8px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+            }
+
+            .card-content .card-image img{
+                object-fit: contain;
+                width: 100%;
             }
 
             h2, h3, p {
@@ -267,8 +294,9 @@
                     width: calc(150px - 32px);
                 }
 
-                .cards > .card.visible {
-                    animation: morph-card 0.5s ease-in-out;
+                .card-content .card-image {
+                    width: calc(150px - 32px);
+                    height: calc(150px - 32px);
                 }
             }
 
@@ -279,12 +307,7 @@
 
                 @keyframes morph-card {
                     0% {
-                        opacity: 1;
-                        transform: scale(2) translateX(100px) translateY(-1000px) rotate(-100deg);
-                    }
-                    100% {
-                        opacity: 1;
-                        transform: scale(1);
+                        transform: scale(1.2) translateX(100px) translateY(-1000px) rotate(-100deg);
                     }
                 }
 
@@ -295,9 +318,19 @@
                     -ms-overflow-style: none;
                 }
 
+                .cards.lock > .card {
+                    opacity: 1;
+                    animation: none !important;
+                }
+
                 .cards.lock::-webkit-scrollbar {
                     display: none;
                 }
+
+                .cards > .card.visible {
+                    animation: morph-card 0.5s ease-in-out;
+                }
+
             }
 
             .card-detail {
@@ -306,20 +339,19 @@
                 justify-content: center;
                 flex-grow: 1;
                 align-items: start;
+                font-size: 12px;
+            }
+
+            .card-detail > span{
+                padding-top: 4px;
             }
 
             .card-detail > span:nth-child(1) {
                 font-weight: bold;
-            }
-
-            .card-detail > span:nth-child(2) {
-                padding-top: 4px;
-                font-size: 12px;
+                font-size: 14px;
             }
 
             .card-detail > span:nth-child(3) {
-                padding-top: 4px;
-                font-size: 12px;
                 font-style: italic;
             }
         </style>
@@ -350,7 +382,9 @@
                 <div class="cards">
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/dnp.jpeg">
+                            <div class="card-image">
+                                <img src="./images/dnp.jpeg">
+                            </div>
                             <div class="card-detail">
                                 <span>Devin and Partners</span>
                                 <span>Digital Agencies</span>
@@ -360,7 +394,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="background: black;" src="./images/kuda.png">
+                            <div class="card-image" style="background: black;">
+                                <img src="./images/kuda.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Kuda Api</span>
                                 <span>F & B</span>
@@ -370,7 +406,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/fasal.png">
+                            <div class="card-image">
+                                <img src="./images/fasal.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Fasal Fragrances</span>
                                 <span>Cosmetic</span>
@@ -380,7 +418,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/bianco.png">
+                            <div class="card-image">
+                                <img src="./images/bianco.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Bianco Living</span>
                                 <span>Home Decor</span>
@@ -390,7 +430,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="background:#9E9B9B" src="./images/hana.png">
+                            <div class="card-image" style="background:#9E9B9B">
+                                <img src="./images/hana.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Hana Terrazzo</span>
                                 <span>Sanitary</span>
@@ -403,7 +445,9 @@
                 <div class="cards">
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/62.png">
+                            <div class="card-image">
+                                <img src="./images/62.png">
+                            </div>
                             <div class="card-detail">
                                 <span>62 Teknologi</span>
                                 <span>Tech</span>
@@ -413,7 +457,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="background:#cbcbcb" src="./images/diurnal.png">
+                            <div class="card-image" style="background:#cbcbcb">
+                                <img src="./images/diurnal.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Diurnal Project</span>
                                 <span>Architecture</span>
@@ -423,7 +469,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border: 1px solid #6CB0B2; width: calc(100% - 2px);" src="./images/alva.png">
+                            <div class="card-image" style="border: 1px solid #6CB0B2; width: calc(100% - 2px);">
+                                <img src="./images/alva.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Alva Billiard</span>
                                 <span>Sport</span>
@@ -433,7 +481,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="background:turquoise;" src="./images/aztro.png">
+                            <div class="card-image" style="background:turquoise;">
+                                <img src="./images/aztro.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Aztro Creative</span>
                                 <span>Event Organizer</span>
@@ -446,7 +496,9 @@
                 <div class="cards">
                     <div class="card">
                         <div class="card-content">
-                            <img style="border: 1px solid #00A351; width: calc(100% - 2px);" src="./images/icodea.png">
+                            <div class="card-image" style="border: 1px solid #00A351; width: calc(100% - 2px);">
+                                <img src="./images/icodea.png">
+                            </div>
                             <div class="card-detail">
                                 <span>iCodea</span>
                                 <span>Tech</span>
@@ -456,7 +508,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img src="./images/nomad.png">
+                            <div class="card-image">
+                                <img src="./images/nomad.png">
+                            </div>
                             <div class="card-detail">
                                 <span>NoMad</span>
                                 <span>Entertainment</span>
@@ -466,7 +520,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border: 1px solid #05AFF9; width: calc(100% - 2px);" src="./images/kit.png">
+                            <div class="card-image" style="border: 1px solid #05AFF9; width: calc(100% - 2px);">
+                                <img src="./images/kit.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Kawan IT</span>
                                 <span>Outsourcing</span>
@@ -476,7 +532,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border: 1px solid #6935FC; width: calc(100% - 2px);" src="./images/az.png">
+                            <div class="card-image" style="border: 1px solid #6935FC; width: calc(100% - 2px);">
+                                <img src="./images/az.png">
+                            </div>
                             <div class="card-detail">
                                 <span>AZ Finance</span>
                                 <span>Finance</span>
@@ -486,7 +544,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border: 1px solid #EAB606; width: calc(100% - 2px);" src="./images/amn.png">
+                            <div class="card-image" style="border: 1px solid #EAB606; width: calc(100% - 2px);">
+                                <img src="./images/amn.png">
+                            </div>
                             <div class="card-detail">
                                 <span>AM Nusaindo</span>
                                 <span>Property</span>
@@ -506,7 +566,9 @@
                 <div class="cards">
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kateng.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/kateng.png">
+                            </div>
                             <div class="card-detail">
                                 <span>House</span>
                                 <span>72 sqm · ±42 sqm</span>
@@ -516,7 +578,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/depok.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/depok.png">
+                            </div>
                             <div class="card-detail">
                                 <span>2 story house</span>
                                 <span>58 sqm · 45 sqm</span>
@@ -526,7 +590,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/depok.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/depok.png">
+                            </div>
                             <div class="card-detail">
                                 <span>3 story house</span>
                                 <span>109 sqm  · 145 sqm</span>
@@ -536,7 +602,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/depok.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/depok.png">
+                            </div>
                             <div class="card-detail">
                                 <span>2 story house</span>
                                 <span>103 sqm · 72 sqm</span>
@@ -549,7 +617,9 @@
                 <div class="cards">
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kabek.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/kabek.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Shophouse</span>
                                 <span>±100 sqm · 36 sqm</span>
@@ -559,7 +629,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kabek.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/kabek.png">
+                            </div>
                             <div class="card-detail">
                                 <span>Kiosk</span>
                                 <span>36 sqm · 36 sqm</span>
@@ -569,7 +641,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kabog.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/kabog.png">
+                            </div>
                             <div class="card-detail">
                                 <span>±400 sqm land</span>
                                 <span>Foodcourt area (TBD)</span>
@@ -579,7 +653,9 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <img style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);" src="./images/kateng.png">
+                            <div class="card-image" style="border-radius:0px;border-bottom: 1px solid purple; width: calc(100% - 2px);">
+                                <img src="./images/kateng.png">
+                            </div>
                             <div class="card-detail">
                                 <span>2 story small office</span>
                                 <span>85 sqm</span>
@@ -597,22 +673,93 @@
             <div>
                 <h3>Professional Certifications</h3>
                 <div class="cards">
-                    <div class="card"><div class="card-content">PSM</div></div>
-                    <div class="card"><div class="card-content">PSPO</div></div>
-                    <div class="card"><div class="card-content">ISM</div></div>
-                    <div class="card"><div class="card-content">CCIT</div></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="./images/ccit.png">
+                            </div>
+                            <div class="card-detail">
+                                <span>CEP-CCIT</span>
+                                <span>IT Engineer</span>
+                                <span>FT. UI</span>
+                                <span>c.a 2012</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="./images/psm.png">
+                            </div>
+                            <div class="card-detail">
+                                <span>PSM</span>
+                                <span>Scrum Master</span>
+                                <span>Scrum.org</span>
+                                <span>c.a 2018</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="./images/ism.png">
+                            </div>
+                            <div class="card-detail">
+                                <span>ISM</span>
+                                <span>Scrum Master</span>
+                                <span>Scrum.org</span>
+                                <span>c.a 2018</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="./images/pspo.png">
+                            </div>
+                            <div class="card-detail">
+                                <span>PSPO</span>
+                                <span>Product Owner</span>
+                                <span>Scrum.org</span>
+                                <span>c.a 2019</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <h3>Course Certifications</h3>
                 <div class="cards">
-                    <div class="card"><div class="card-content">Agile Planning</div></div>
-                    <div class="card"><div class="card-content">Project Management</div></div>
-                    <div class="card"><div class="card-content">ETC</div></div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="./images/course-2.png">
+                            </div>
+                            <div class="card-detail">
+                                <span>Software Planning</span>
+                                <span>Alberta University</span>
+                                <span>coursera.org</span>
+                                <span>c.a 2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="./images/course-1.png">
+                            </div>
+                            <div class="card-detail">
+                                <span>Project Management</span>
+                                <span>Google</span>
+                                <span>coursera.org</span>
+                                <span>c.a 2021</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <script>
-            const observer = new IntersectionObserver((entries) => {
+            const cardObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         if(!entry.target.classList.contains('visible')){
@@ -631,11 +778,6 @@
                                 }, 1500);
                             }, index * 300);
                         }
-                    } else {
-                        // if(entry.target.classList.contains('removeable')){
-                        //     entry.target.classList.remove('visible');
-                        //     entry.target.classList.remove('removeable');
-                        // }
                     }
                 });
             }, {
@@ -644,9 +786,30 @@
 
             document.querySelectorAll('.cards').forEach((cards, index) => {
                 cards.querySelectorAll('.card').forEach((card, index2) => {
-                    card.dataset.index = (index/3)+index2;
-                    observer.observe(card);
+                    card.dataset.index = (index/3.5)+index2;
+                    cardObserver.observe(card);
                 });
+            });
+
+
+
+
+            const gradientObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        console.log("ok")
+                        entry.target.classList.remove('paused');
+                    } else {
+                        console.log("nok")
+                        entry.target.classList.add('paused');
+                    }
+                });
+            }, {
+                threshold: 0
+            });
+
+            document.querySelectorAll('.gradient-layer').forEach((entry, index) => {
+                gradientObserver.observe(entry);
             });
         </script>
     </body>
