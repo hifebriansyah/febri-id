@@ -354,6 +354,33 @@
             .card-detail > span:nth-child(3) {
                 font-style: italic;
             }
+            @media (min-width: 1024px) {
+                .cards.legacy-cards {
+                    flex-wrap: wrap;
+                    gap: 16px;
+                    max-width: calc(4 * 190px + 3 * 16px);
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .cards.legacy-cards > .card {
+                    padding: 0;
+                }
+            }
+
+            @media (max-width: 1023px) {
+                .cards.legacy-cards {
+                    flex-wrap: nowrap;
+                    overflow-x: auto;
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                }
+
+                .cards.legacy-cards::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
         </style>
     </head>
     <body>
@@ -380,6 +407,18 @@
             <div>
                 <h3>Passive & Beneficial Investment</h3>
                 <div class="cards">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="./images/62.png">
+                            </div>
+                            <div class="card-detail">
+                                <span>62 Teknologi</span>
+                                <span>Tech</span>
+                                <span>c.a 2019</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-content">
                             <div class="card-image">
@@ -416,21 +455,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-image">
-                                <img src="./images/62.png">
-                            </div>
-                            <div class="card-detail">
-                                <span>62 Teknologi</span>
-                                <span>Tech</span>
-                                <span>c.a 2019</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <h3>Legacy Investment</h3>
-                <div class="cards">
+                <div class="cards legacy-cards">
                     <div class="card">
                         <div class="card-content">
                             <div class="card-image" style="border: 1px solid #00A351; width: calc(100% - 2px);">
